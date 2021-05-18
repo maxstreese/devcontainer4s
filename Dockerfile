@@ -15,22 +15,15 @@ RUN  curl -s "https://get.sdkman.io" | bash
 
 COPY .sdkman/etc/config /root/.sdkman/etc/config
 
-# TODO: Remove this again
-RUN source "$HOME/.sdkman/bin/sdkman-init.sh" && \
-    sdk update                                && \
-    sdk list java
-
 RUN source "$HOME/.sdkman/bin/sdkman-init.sh" && \
     sdk update                                && \
     sdk install java 21.1.0.r11-grl           && \
-    sdk install java 21.1.0.r8-grl            && \
     sdk install maven 3.8.1                   && \
     sdk install scala 2.13.5                  && \
     sdk install sbt 1.5.2
 
 RUN mkdir /root/.jdk                                                  && \
-    ln -s /root/.sdkman/candidates/java/21.1.0.r11-grl/ /root/.jdk/11 && \
-    ln -s /root/.sdkman/candidates/java/21.1.0.r8-grl/ /root/.jdk/8
+    ln -s /root/.sdkman/candidates/java/21.1.0.r11-grl/ /root/.jdk/11
 
 RUN curl -L https://git.io/coursier-cli-linux > /usr/local/bin/cs && \
     chmod +x /usr/local/bin/cs
