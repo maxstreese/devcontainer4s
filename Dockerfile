@@ -15,6 +15,11 @@ RUN  curl -s "https://get.sdkman.io" | bash
 
 COPY .sdkman/etc/config /root/.sdkman/etc/config
 
+# TODO: Remove this again
+RUN source "$HOME/.sdkman/bin/sdkman-init.sh" && \
+    sdk update                                && \
+    sdk list java
+
 RUN source "$HOME/.sdkman/bin/sdkman-init.sh" && \
     sdk update                                && \
     sdk install java 21.1.0.r11-grl           && \
